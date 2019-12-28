@@ -1,0 +1,61 @@
+<mat-card class="example-card centered">
+  <mat-card-header class="flex align-items-start justify-content-between">
+    <button
+      type="button" class="close" aria-label="Close"
+      routerLink="../"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="isLoading">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <form [formGroup]="authFG" *ngIf="!isLoading">
+      <mat-form-field class="innerField">
+        <mat-label>Login</mat-label>
+          <input matInput
+                 [formControl]="loginFC"
+                 placeholder="put login here"
+                 required
+                 [errorStateMatcher]="matcher"
+          >
+        <mat-hint>your email</mat-hint>
+        <mat-error *ngIf="loginFC.invalid">this is not email</mat-error>
+      </mat-form-field>
+      <mat-form-field
+        class="innerField"
+
+      >
+        <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"
+                  #pwInput
+                 [formControl]="passwordFC"
+                 placeholder="put password here"
+                 required
+                 [errorStateMatcher]="matcher"
+          >
+        <button mat-icon-button matSuffix
+                (click)="hide=!hide"
+                [attr.aria-label]="'Hide password'"
+                [attr.area-pressed]="hide">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-hint *ngIf="pwInput.value?.length < 8">Add at least {{ 8 - pwInput.value?.length }} more characters</mat-hint>
+        <mat-error *ngIf="passwordFC.invalid">password is now valid</mat-error>
+      </mat-form-field>
+      <mat-card-actions>
+        <button mat-raised-button
+                color="primary"
+                (click)="sendAuthInfo('signIn')"
+                [disabled]=""
+        >Sign in</button>
+        <button mat-raised-button
+                color="primary"
+                (click)="sendAuthInfo('signUp')"
+                [disabled]="true"
+        >Sign up</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

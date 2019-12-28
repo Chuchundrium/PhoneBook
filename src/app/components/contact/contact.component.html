@@ -1,0 +1,86 @@
+<div class="myTest">
+  <mat-card class="example-card centered">
+    <mat-card-header class="flex justify-content-end">
+      <button type="button" class="close" (click)="cancel()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="contactFG" (submit)="contactSubmit()"
+            style="padding: 10px"
+      >
+        <mat-form-field>
+          <mat-label>last name</mat-label>
+          <input matInput
+                 required
+                 [formControl]="lastNameFC"
+                 [errorStateMatcher]="matcher"
+          >
+          <mat-hint>characters and blanks only</mat-hint>
+          <mat-error *ngIf="lastNameFC.hasError('required')">required fields</mat-error>
+          <mat-error *ngIf="lastNameFC.hasError('pattern')">forbidden symbols</mat-error>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field>
+          <mat-label>name</mat-label>
+          <input matInput
+                 required
+                 [formControl]="nameFC"
+                 [errorStateMatcher]="matcher"
+          >
+          <mat-hint>characters and blanks only</mat-hint>
+          <mat-error *ngIf="nameFC.hasError('required')">required fields</mat-error>
+          <mat-error *ngIf="nameFC.hasError('pattern')">forbidden symbols</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>phone number</mat-label>
+          <input matInput
+                 required
+                 [formControl]="phoneFC"
+                 [errorStateMatcher]="matcher"
+          >
+          <mat-hint>[XX]X-[XX]X-XXX-XXX</mat-hint>
+          <mat-error *ngIf="phoneFC.invalid">doesnt match to [XX]X-[XX]X-XXX-XXX</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>email</mat-label>
+          <input matInput
+                 required
+                 [formControl]="emailFC"
+                 [errorStateMatcher]="matcher"
+          >
+          <mat-hint>xxxx@xxx.[xx]xx</mat-hint>
+          <mat-error *ngIf="emailFC.hasError('required')">required field</mat-error>
+          <mat-error *ngIf="emailFC.hasError('pattern')">forbidden symbols</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>address</mat-label>
+          <input matInput
+                 [formControl]="addressFC"
+                 [errorStateMatcher]="matcher"
+          >
+          <mat-hint>characters, digits, blanks and ;,- only</mat-hint>
+          <mat-error *ngIf="addressFC.hasError('required')">required field</mat-error>
+          <mat-error *ngIf="addressFC.hasError('pattern')">forbidden symbols</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>description</mat-label>
+          <textarea matInput
+                    [formControl]="descriptionFC"
+                    placeholder="your comments"
+          ></textarea>
+          <mat-hint>not more than 50 symbols</mat-hint>
+        </mat-form-field>
+        <br>
+        <br>
+        <ng-container>
+          <button type="submit" mat-raised-button color="primary">Submit</button>
+          <button type="reset" mat-raised-button color="primary">Clear</button>
+        </ng-container>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

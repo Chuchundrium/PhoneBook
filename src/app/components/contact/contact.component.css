@@ -1,0 +1,33 @@
+button {
+  font-family: "Tw Cen MT", serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px;
+}
+.example-card {
+  /*width: 25vw;*/
+  align-content: center;
+  text-align: center;
+}
+mat-card {
+  width: 23vw;
+}
+.centered {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform:  translate(-50%, -50%)
+}
+mat-form-field{
+  width: 20vw;
+  font-family: "Tw Cen MT", serif;
+}
+.myTest{
+  position: absolute;
+  top: 10vh;
+  left: 0;
+  width: 100vw;
+  height: 90vh;
+  background-color: rgba(228, 241, 246, 0.7);
+}
+

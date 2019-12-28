@@ -1,0 +1,36 @@
+@import '~@angular/material/theming';
+@include mat-core();
+$my-light-primary-text: #E4F1F6;
+$my-dark-primary-text: #34090C;
+$mat-chu: (
+  50: #E4F1F6,
+  100: #67AFCB,
+  150: #F8C822,
+  200: #347B98,
+  300: #1A3E4C,
+  400: #092834,
+  500: #34090C,
+  600: #CE2523,
+  contrast: (
+    50: $my-dark-primary-text,
+    100: $my-dark-primary-text,
+    150: $my-dark-primary-text,
+    200: $my-dark-primary-text,
+    300: $my-dark-primary-text,
+    400: $my-dark-primary-text,
+    500: $my-light-primary-text,
+    600: $my-light-primary-text
+  )
+);
+$my-app-primary: mat-palette($mat-chu, 100);
+$my-app-accent:  mat-palette($mat-chu, 150);
+$my-app-warn:    mat-palette($mat-chu, 600);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
+//.alternate-theme {
+//
+//  $alternate-primary: mat-palette($mat-chu, 100);
+//  $alternate-accent:  mat-palette($mat-chu, 400);
+//  $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+//  @include angular-material-theme($alternate-theme);
+//}
