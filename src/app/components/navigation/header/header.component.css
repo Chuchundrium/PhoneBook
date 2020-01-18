@@ -1,0 +1,24 @@
+/*a {*/
+/*  text-decoration: none;*/
+/*  color: #4e5760;*/
+/*}*/
+/*a:hover,*/
+/*a:active {*/
+/*  color: #f8a739;*/
+/*}*/
+.mainTitle {
+  font-family: "Poiret One", cursive;
+  font-size: 40px;
+  color: #E4F1F6;
+  margin: 0;
+}
+img {
+  height: 48px;
+  width: 48px;
+}
+button {
+  font-family: "Comfortaa", cursive;
+}
+.buttonText {
+  margin-left: 4px;
+}

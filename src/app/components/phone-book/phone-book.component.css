@@ -1,35 +1,28 @@
-/*::ng-deep .blue-centered-snack{*/
-/*  background-color: blue;*/
-/*  color: white;*/
-/*}*/
-
-/*::ng-deep .mat-simple-snackbar{*/
-/*  justify-content: center !important;*/
-/*}*/
 .accordion{box-sizing: border-box; overflow: hidden; min-height: 0;
   border: none;  background-color: #67AFCB; height: auto;}
 .expanded {height: auto;}
 .mainTitle {
-  font-family: "Tw Cen MT", serif;
-  font-size: 30px;
+  font-family: Comfortaa, cursive;
   color: #E4F1F6;
 }
 button {
-  font-family: "Tw Cen MT", serif;
-  font-size: 20px;
+  font-family: Comfortaa, cursive;
   font-weight: bold;
   margin: 5px;
 }
 mat-card {
-  width: 100vw;
-  height: 100vh;
+  min-height: 90vh;
   background-color: #E4F1F6;
 }
-img {
-  margin: 1vh;
-  height: 6vh;
+mat-form-field, mat-table {
+  font-family: Comfortaa, cursive;
 }
-mat-form-field, mat-table{
-  font-family: "Tw Cen MT", serif;
+.alwaysView:hover {
+  background-color: rgba(103, 175, 203, 0.5);
+  cursor: pointer;
 }
+b::selection,p::selection,mat-cell::selection {
+  background-color: #F8C822;
+}
+
 

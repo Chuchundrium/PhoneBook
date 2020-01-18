@@ -1,0 +1,20 @@
+.auth-container {
+  height: 80vh;
+}
+button {
+  font-family: Comfortaa, cursive;
+  font-weight: bold;
+}
+mat-card {
+  font-family: Comfortaa, cursive;
+}
+mat-form-field {
+  font-family: Comfortaa, cursive;
+  margin: 10px;
+}
+mat-card-actions {
+  margin: 0;
+  padding: 0;
+}
+
+

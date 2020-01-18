@@ -40,7 +40,4 @@ export class ApplicationService {
     return forkJoin(requests);
   }
 
-  // setToken(token: string) {
-  //   this.httpOptions.headers = this.httpOptions.headers.set('Authorization', token);
-  // }
 }

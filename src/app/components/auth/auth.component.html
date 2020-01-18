@@ -1,0 +1,74 @@
+<div class='auth-container'>
+  <div  fxFlex
+        fxLayout="column"
+        fxLayoutAlign="space-evenly center">
+    <mat-card *ngIf="!isLoading" style="max-height: 70vh">
+      <button
+        type="button" class="close" aria-label="Close"
+        matTooltip="Close"
+        routerLink="../"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <br>
+      <mat-card-content>
+        <form [formGroup]="authFG">
+          <div fxLayout="column" fxLayout.lt-md="row" fxLayout.xs="column">
+            <mat-form-field>
+              <mat-label>Login</mat-label>
+              <input matInput
+                     type="text"
+                     [formControl]="loginFC"
+                     placeholder="put login here"
+                     required
+                     [errorStateMatcher]="matcher"
+                     autocomplete="off"
+              >
+              <mat-hint>your email</mat-hint>
+              <mat-error *ngIf="loginFC.invalid">it doesn't look like email</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input matInput
+                     [type]="hide ? 'password' : 'text'"
+                     #pwInput
+                     [formControl]="passwordFC"
+                     placeholder="put password here"
+                     required
+                     [errorStateMatcher]="matcher"
+                     autocomplete="off"
+                     (keydown.Enter)="sendAuthInfo('signIn')"
+              >
+              <button mat-icon-button matSuffix
+                      (click)="hide=!hide"
+                      [attr.aria-label]="'Hide password'"
+                      [attr.area-pressed]="hide">
+                <mat-icon [matTooltip]="hide ? 'view password' : 'hide password'"
+                >
+                  {{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+              <mat-hint *ngIf="pwInput.value?.length < 8">Add at least {{ 8 - pwInput.value?.length }} more characters</mat-hint>
+              <mat-error *ngIf="passwordFC.invalid">password is now valid</mat-error>
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-card-content>
+      <div fxLayoutAlign="center" fxLayoutGap="10px">
+        <button mat-raised-button
+                color="primary"
+                type="submit"
+                (click)="sendAuthInfo('signIn')"
+                [disabled]=""
+        >Sign in</button>
+        <button mat-raised-button
+                color="primary"
+                (click)="sendAuthInfo('signUp')"
+                [disabled]="true"
+        >Sign up</button>
+      </div>
+    </mat-card>
+    <div *ngIf="isLoading">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+  </div>
+</div>

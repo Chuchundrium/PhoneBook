@@ -1,33 +1,31 @@
-button {
-  font-family: "Tw Cen MT", serif;
-  font-size: 20px;
+button, p {
+  font-family: Comfortaa, cursive;
   font-weight: bold;
   margin: 5px;
 }
-.example-card {
-  /*width: 25vw;*/
-  align-content: center;
-  text-align: center;
+.buttonText {
+  margin-left: 4px;
+}
+
+mat-form-field {
+  font-family: Comfortaa, cursive;
+  /*margin: 10px;*/
+  width: 100%;
+}
+.myContact {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  /*min-height: 100%;*/
+  /*overflow-y: scroll;*/
+  background-color: rgba(228, 241, 246, 0.7);
+}
+mat-card-content {
+  /*margin: 0 48px 0 48px;*/
+  /*!*min-height: 80vh;*!*/
+  /*min-height: 100%;*/
 }
 mat-card {
-  width: 23vw;
-}
-.centered {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform:  translate(-50%, -50%)
-}
-mat-form-field{
-  width: 20vw;
-  font-family: "Tw Cen MT", serif;
-}
-.myTest{
-  position: absolute;
-  top: 10vh;
-  left: 0;
-  width: 100vw;
-  height: 90vh;
-  background-color: rgba(228, 241, 246, 0.7);
+
 }
 

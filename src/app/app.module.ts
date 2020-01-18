@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
-import {AuthComponent} from './components/home-page/auth/auth.component';
+import {AuthComponent} from './components/auth/auth.component';
 import {PhoneBookComponent} from './components/phone-book/phone-book.component';
 import {HomePageComponent} from './components/home-page/home-page.component';
 import {ContactComponent} from './components/contact/contact.component';
@@ -18,7 +18,9 @@ import {ApplicationService} from './services/application.service';
 import {DataService} from './services/data.service';
 import {PhoneBookGuardService} from './services/phone-book-guard.service';
 import {MaterialAngularModule} from './modules/material-angular/material-angular.module';
-import {MatIconModule, MatSidenavModule} from '@angular/material';
+import {MatIconModule, MatSidenavModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
+import {HeaderComponent} from './components/navigation/header/header.component';
+import {ExtendedModule, FlexModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import {MatIconModule, MatSidenavModule} from '@angular/material';
     PhoneBookComponent,
     HomePageComponent,
     ContactComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,10 @@ import {MatIconModule, MatSidenavModule} from '@angular/material';
     MaterialAngularModule,
     MatIconModule,
     MatSidenavModule,
+    MatToolbarModule,
+    ExtendedModule,
+    FlexModule,
+    MatTooltipModule,
   ],
   providers: [AuthService,
     ApplicationService,

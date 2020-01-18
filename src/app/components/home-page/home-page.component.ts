@@ -1,6 +1,6 @@
 import {Component, forwardRef, Inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthComponent} from './auth/auth.component';
+import {AuthComponent} from '../auth/auth.component';
 
 @Component({
   selector: 'app-home-page',

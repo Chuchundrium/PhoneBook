@@ -1,0 +1,24 @@
+<mat-toolbar color="primary" style="background: #1A3E4C">
+  <div fxFlex
+       fxLayout="row"
+       fxLayoutAlign="space-between center"
+       fxLayoutGap="10px">
+    <div>
+      <a matTooltip="Contact"><img mat-card-sm-image src="assets/logo.png" alt=""></a>
+    </div>
+    <div fxHide.xs>
+      <p fxFlexAlign="center" class="mainTitle">My contacts. Phone book</p>
+    </div>
+    <div>
+      <button mat-raised-button
+              color="primary"
+              matTooltip="push the button"
+              type="submit"
+              (click)="onEntrance()"
+      >
+        <mat-icon >{{ isInside ? 'power_settings_new' : 'perm_identity' }} </mat-icon>
+        <span class="buttonText">{{ isInside ? 'Logout' : 'Login' }} </span>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>

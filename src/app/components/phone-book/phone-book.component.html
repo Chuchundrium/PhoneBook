@@ -1,83 +1,79 @@
-<mat-card>
-  <mat-card-title  style="background: #1A3E4C" class="d-flex justify-content-between align-items-end">
-    <img src="../../../assets/logo.png" alt="">
-    <p class="mainTitle">My contacts. Phone book</p>
-    <button mat-raised-button
-            color="primary"
-            (click)="logout()"
-    >Logout</button>
-  </mat-card-title>
-
+<div fxFlex="100">
 <button mat-raised-button
         color="primary"
         (click)="refresh()"
->Refresh</button>
+        matTooltip="clear all selections"
+><mat-icon>refresh</mat-icon> Refresh </button>
 
   <mat-form-field>
     <input matInput
            (keyup)="applyFilter($event.target.value)"
-           placeholder="Filter">
+           placeholder="Filter"
+           matTooltip="enter the first few letters or numbers">
   </mat-form-field>
-
-<mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
-  <mat-expansion-panel (opened)="panelOpenState = true">
-
-  </mat-expansion-panel>
-  <ng-container matColumnDef="expand">
-    <mat-cell *matCellDef="let obj"
-              [attr.colspan]="displayedColumns.length">
-      <div>
-        <p><b>id:</b> {{ obj.id }}</p>
-        <p><b>name:</b> {{ obj.name }}</p>
-        <p><b>last name:</b> {{ obj.lastName }}</p>
-        <p><b>phone:</b> {{ obj.phone }}</p>
-        <p><b>email:</b> {{ obj.email }}</p>
-        <p><b>address:</b> {{ obj.address }}</p>
-        <p><b>description:</b> {{ obj.description }}</p>
-      </div>
-    </mat-cell>
+<br>
+  <ng-container *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
   </ng-container>
 
-  <ng-container matColumnDef="mark">
-    <mat-header-cell *matHeaderCellDef>
-      <mat-checkbox color="accent"
-                    [checked]="markedAll"
-                    (change)="markAll()">
-      </mat-checkbox>
-    </mat-header-cell>
-    <mat-cell *matCellDef="let obj">
-      <mat-checkbox color="primary"
-                    [checked]="isMarked(obj.id)"
-                    (change)="checkBoxListener(obj.id)"
-                    (click)="stopProp($event)"
-      ></mat-checkbox>
-    </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="lastName">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Family name</mat-header-cell>
-    <mat-cell *matCellDef="let obj">{{ obj.lastName }}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Private name</mat-header-cell>
-    <mat-cell *matCellDef="let obj">{{ obj.name }}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="phone">
-    <mat-header-cell *matHeaderCellDef>Phone number</mat-header-cell>
-    <mat-cell *matCellDef="let obj">{{ obj.phone }}</mat-cell>
-  </ng-container>
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"
-           (click)="expandedRow = row == expandedRow ? null : row"
-  ></mat-row>
-  <mat-row *matRowDef="let row; columns: ['expand']"
-           [@fullInfo]="row == expandedRow ? 'open' : 'closed'"
-           class="accordion"></mat-row>
-</mat-table>
+  <mat-table *ngIf="!isLoading" [dataSource]="dataSource" matSort multiTemplateDataRows>
+    <mat-expansion-panel (opened)="panelOpenState = true">
+    </mat-expansion-panel>
+    <ng-container matColumnDef="expand">
+      <mat-cell *matCellDef="let obj"
+                [attr.colspan]="displayedColumns.length">
+        <div>
+          <p><b>id:</b> {{ obj.id }}</p>
+          <p><b>name:</b> {{ obj.name }}</p>
+          <p><b>last name:</b> {{ obj.lastName }}</p>
+          <p><b>phone:</b> {{ obj.phone }}</p>
+          <p><b>email:</b> {{ obj.email }}</p>
+          <p><b>address:</b> {{ obj.address }}</p>
+          <p><b>description:</b> {{ obj.description }}</p>
+        </div>
+      </mat-cell>
+    </ng-container>
 
-
-<mat-paginator #paginator
+    <ng-container matColumnDef="mark">
+      <mat-header-cell *matHeaderCellDef fxFlex="15">
+        <mat-checkbox color="accent"
+                      [checked]="markedAll"
+                      (change)="markAll()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let obj" fxFlex="15">
+        <mat-checkbox color="primary"
+                      [checked]="isMarked(obj.id)"
+                      (change)="checkBoxListener(obj.id)"
+                      (click)="stopProp($event)"
+        ></mat-checkbox>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Family name</mat-header-cell>
+      <mat-cell *matCellDef="let obj">{{ obj.lastName }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell fxHide.xs *matHeaderCellDef mat-sort-header>Private name</mat-header-cell>
+      <mat-cell fxHide.xs *matCellDef="let obj">{{ obj.name }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef>Phone number</mat-header-cell>
+      <mat-cell *matCellDef="let obj">{{ obj.phone }}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"
+             (click)="expandedRow = row == expandedRow ? null : row"
+             class="alwaysView"
+    ></mat-row>
+    <mat-row *matRowDef="let row; columns: ['expand']"
+             [@fullInfo]="row == expandedRow ? 'open' : 'closed'"
+             class="accordion"></mat-row>
+  </mat-table>
+<mat-paginator *ngIf="!isLoading" #paginator
                [pageSize]="10"
                [pageSizeOptions]="[3, 6, 9]"
+
                [showFirstLastButtons]="true"
 ></mat-paginator>
 <div>
@@ -85,21 +81,19 @@
           color="primary"
           [disabled]="markedContactsIds.length > 0"
           (click)="addContact('new')"
-  > Add </button>
+  > <mat-icon>add</mat-icon> Add </button>
   <button mat-raised-button
           color="primary"
           [disabled]="markedContactsIds.length != 1"
           (click)="correctContact('id:' + markedContactsIds[0])"
-  > Change </button>
+  ><mat-icon>edit</mat-icon> Edit </button>
   <button mat-raised-button
           color="warn"
           [disabled]="markedContactsIds.length == 0"
           (click)="removeContacts()"
-  > Remove </button>
+  ><mat-icon>clear</mat-icon>  Remove </button>
 </div>
-</mat-card>
-<router-outlet></router-outlet>
+</div>
+  <router-outlet></router-outlet>
 
-<!--<div *ngIf="isLoading">-->
-<!--  <app-loading-spinner></app-loading-spinner>-->
-<!--</div>-->
+
