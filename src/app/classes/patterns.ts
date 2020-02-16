@@ -5,6 +5,5 @@ export class Patterns {
   static passwordPattern =  Validators.pattern('^(?=.*[0-9])(?=.*[$~\\-_])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z$~\\-_]{8,}$');
   static namePattern =  Validators.pattern('^[ a-zA-ZА-Яа-я]+$');
   static addressPattern =  Validators.pattern('^[ a-zA-ZА-Яа-я0-9,;\\-//]+$');
-  // static phonePattern =  Validators.pattern('\\+?\\d{1,3}-\\d{1,3}-\\d{3}-\\d{4}');
-  static phonePattern =  Validators.pattern('^[0-9-]+$');
+  static phonePattern =  Validators.pattern('\\+?\\d{1,3}-\\d{1,3}-\\d{3}-\\d{4}');
 }

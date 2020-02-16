@@ -17,7 +17,7 @@
               (click)="onEntrance()"
       >
         <mat-icon >{{ isInside ? 'power_settings_new' : 'perm_identity' }} </mat-icon>
-        <span class="buttonText">{{ isInside ? 'Logout' : 'Login' }} </span>
+        <span class="buttonText" fxHide.xs>{{ isInside ? 'Logout' : 'Login' }} </span>
       </button>
     </div>
   </div>

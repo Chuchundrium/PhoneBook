@@ -1,13 +1,9 @@
 .mainTitle {
-  /*font-family: "Tw Cen MT", serif;*/
   font-family: Comfortaa, cursive;
-  /*font-size: 50px;*/
   color: #E4F1F6;
 }
 button {
-  /*font-family: "Tw Cen MT", serif;*/
   font-family: Comfortaa, cursive;
-  /*font-size: 20px;*/
   font-weight: bold;
   margin: 5px;
 }

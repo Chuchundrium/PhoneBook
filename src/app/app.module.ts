@@ -18,7 +18,6 @@ import {ApplicationService} from './services/application.service';
 import {DataService} from './services/data.service';
 import {PhoneBookGuardService} from './services/phone-book-guard.service';
 import {MaterialAngularModule} from './modules/material-angular/material-angular.module';
-import {MatIconModule, MatSidenavModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
 import {HeaderComponent} from './components/navigation/header/header.component';
 import {ExtendedModule, FlexModule} from '@angular/flex-layout';
 
@@ -41,12 +40,8 @@ import {ExtendedModule, FlexModule} from '@angular/flex-layout';
     ReactiveFormsModule,
     FormsModule,
     MaterialAngularModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatToolbarModule,
     ExtendedModule,
     FlexModule,
-    MatTooltipModule,
   ],
   providers: [AuthService,
     ApplicationService,

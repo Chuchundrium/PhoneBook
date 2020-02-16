@@ -51,9 +51,6 @@ export class PhoneBookComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dataSubscription = this.dataService.dataSubject.subscribe( () => {
       this.isLoading = false;
       this.dataSource.data = this.dataService.getContactArray();
-      // if (!this.firstTime) {
-      //   this.matSnackBar.open('Data refreshed', null, this.snackBarOption);
-      // }
       this.firstTime = false;
     });
   }
@@ -77,7 +74,7 @@ export class PhoneBookComponent implements OnInit, AfterViewInit, OnDestroy {
 
   addContact(id) {
     this.dataService.setContact(null);
-    this.router.navigate(['phone-book', 'contact', id]);
+    this.router.navigate(['contact', id]);
   }
 
   correctContact(id) {
@@ -85,7 +82,7 @@ export class PhoneBookComponent implements OnInit, AfterViewInit, OnDestroy {
       this.dataSource.data
         .find((contact: any) => contact.id === this.markedContactsIds[0]
     ) as Contact);
-    this.router.navigate(['phone-book', 'contact', id]);
+    this.router.navigate(['contact', id]);
   }
 
   removeContacts() {

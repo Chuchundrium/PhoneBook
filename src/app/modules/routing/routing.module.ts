@@ -7,15 +7,9 @@ import {PhoneBookGuardService} from '../../services/phone-book-guard.service';
 import {AuthComponent} from '../../components/auth/auth.component';
 
 const appRoutes: Routes = [
-  // { path: '', component: AppComponent, children: [
-  //     { path: 'auth', component: AuthComponent }
-  //   ] },
-  // { path: 'home', component: AppComponent },
   { path: 'auth', component: AuthComponent },
-  { path: 'phone-book', component: PhoneBookComponent, canActivate: [PhoneBookGuardService], children: [
-      { path: 'contact/:id', component: ContactComponent }
-    ] },
-  // { path: '**', redirectTo: 'home' }
+  { path: 'phone-book', component: PhoneBookComponent, canActivate: [PhoneBookGuardService]},
+  { path: 'contact/:id', component: ContactComponent }
 ];
 
 @NgModule({

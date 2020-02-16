@@ -10,9 +10,6 @@ import {forkJoin} from 'rxjs/internal/observable/forkJoin';
   providedIn: 'root'
 })
 export class ApplicationService {
-  snackBarOption: object = {
-    duration: 3000
-  };
 
   constructor(private http: HttpClient,
               private dataService: DataService) { }

@@ -11,11 +11,7 @@ export class HomePageComponent implements OnInit {
   private authComponent: AuthComponent;
   isAuthOpen = false;
 
-  constructor(private router: Router,
-              // @Inject(forwardRef(() => AuthComponent))
-              //   authComponent: AuthComponent
-  ) {
-    // this.authComponent = authComponent;
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
@@ -23,9 +19,5 @@ export class HomePageComponent implements OnInit {
   go(myPath) {
     this.router.navigate([myPath]);
     this.isAuthOpen = true;
-  }
-
-  setSignInInvisible(isVisible: boolean): void {
-    // this.
   }
 }

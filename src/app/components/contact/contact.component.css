@@ -9,21 +9,12 @@ button, p {
 
 mat-form-field {
   font-family: Comfortaa, cursive;
-  /*margin: 10px;*/
   width: 100%;
+  padding: 5px 0 5px 0;
 }
-.myContact {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  /*min-height: 100%;*/
-  /*overflow-y: scroll;*/
-  background-color: rgba(228, 241, 246, 0.7);
-}
+
 mat-card-content {
-  /*margin: 0 48px 0 48px;*/
-  /*!*min-height: 80vh;*!*/
-  /*min-height: 100%;*/
+  margin: 0 48px 0 48px;
 }
 mat-card {
 

@@ -1,6 +1,6 @@
 export class URLs {
 
-  static urlBase = 'https://contacts-telran.herokuapp.com/api';
+  static urlBase = 'https://contacts.herokuapp.com/api';
 
   static urlLogin = URLs.urlBase + '/login';
   static urlRegister = URLs.urlBase + '/registration';

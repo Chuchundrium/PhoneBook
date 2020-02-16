@@ -7,7 +7,6 @@ import {Patterns} from '../../classes/patterns';
 import {Observable, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {ApplicationService} from '../../services/application.service';
-import {DataService} from '../../services/data.service';
 import {HomePageComponent} from '../home-page/home-page.component';
 
 @Component({
@@ -41,7 +40,6 @@ export class AuthComponent implements OnInit, OnDestroy {
   constructor(private matSnackBar: MatSnackBar,
               private authService: AuthService,
               private applicationService: ApplicationService,
-              private dataService: DataService,
               private router: Router) {  }
 
   ngOnInit() {
@@ -62,7 +60,6 @@ export class AuthComponent implements OnInit, OnDestroy {
         this.authService.authenticate(this.authFG.value);
     this.authSubscription = this.authObservable.subscribe((res) => {
           window.sessionStorage.setItem('phoneBookToken', res.token);
-          // window.localStorage.setItem('phoneBookToken', res.token);
           this.matSnackBar.open('Access allowed', null, this.snackBarOption);
           this.applicationService.getAll();
           this.router.navigate(['phone-book']);

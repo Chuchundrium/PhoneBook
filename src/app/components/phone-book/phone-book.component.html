@@ -1,22 +1,47 @@
-<div fxFlex="100">
-<button mat-raised-button
-        color="primary"
-        (click)="refresh()"
-        matTooltip="clear all selections"
-><mat-icon>refresh</mat-icon> Refresh </button>
-
-  <mat-form-field>
+<div *ngIf="isLoading" fxFlex="100" fxLayout="column"
+     fxLayoutAlign="space-evenly center" style="height: 80vh">
+  <ng-container>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-container>
+</div>
+<div *ngIf="!isLoading" fxFlex="100">
+  <div fxLayout="row" fxLayoutAlign="space-between none"  style="padding: 0 16px 0 16px; margin: 20px 0 0 0 ">
+    <div>
+      <button mat-flat-button
+              color="primary" style="margin: 0 10px 0 0"
+              [disabled]="markedContactsIds.length > 0"
+              (click)="addContact('new')"
+      > <mat-icon>add</mat-icon><span fxHide.xs> Add </span></button>
+      <button mat-flat-button
+              color="primary" style="margin: 0 10px 0 0"
+              [disabled]="markedContactsIds.length != 1"
+              (click)="correctContact('id:' + markedContactsIds[0])"
+      ><mat-icon>edit</mat-icon><span fxHide.xs> Edit </span></button>
+      <button mat-flat-button
+              color="warn" style="margin: 0 10px 0 0"
+              [disabled]="markedContactsIds.length == 0"
+              (click)="removeContacts()"
+      ><mat-icon>clear</mat-icon><span fxHide.xs>  Remove </span></button>
+    </div>
+    <div>
+      <button mat-flat-button
+              color="primary"
+              (click)="refresh()"
+              matTooltip="clear all selections"
+      ><mat-icon>refresh</mat-icon><span fxHide.xs> Refresh </span></button>
+    </div>
+  </div>
+  <mat-form-field style="padding: 0 16px 0 16px;">
     <input matInput
            (keyup)="applyFilter($event.target.value)"
            placeholder="Filter"
            matTooltip="enter the first few letters or numbers">
   </mat-form-field>
 <br>
-  <ng-container *ngIf="isLoading">
-    <app-loading-spinner></app-loading-spinner>
-  </ng-container>
-
-  <mat-table *ngIf="!isLoading" [dataSource]="dataSource" matSort multiTemplateDataRows>
+  <mat-table [dataSource]="dataSource"
+             matSort matSortDisableClear
+             multiTemplateDataRows
+             matSortActive="lastName" matSortDirection="asc">
     <mat-expansion-panel (opened)="panelOpenState = true">
     </mat-expansion-panel>
     <ng-container matColumnDef="expand">
@@ -72,28 +97,7 @@
   </mat-table>
 <mat-paginator *ngIf="!isLoading" #paginator
                [pageSize]="10"
-               [pageSizeOptions]="[3, 6, 9]"
-
+               [pageSizeOptions]="[5, 10, 15]"
                [showFirstLastButtons]="true"
 ></mat-paginator>
-<div>
-  <button mat-raised-button
-          color="primary"
-          [disabled]="markedContactsIds.length > 0"
-          (click)="addContact('new')"
-  > <mat-icon>add</mat-icon> Add </button>
-  <button mat-raised-button
-          color="primary"
-          [disabled]="markedContactsIds.length != 1"
-          (click)="correctContact('id:' + markedContactsIds[0])"
-  ><mat-icon>edit</mat-icon> Edit </button>
-  <button mat-raised-button
-          color="warn"
-          [disabled]="markedContactsIds.length == 0"
-          (click)="removeContacts()"
-  ><mat-icon>clear</mat-icon>  Remove </button>
 </div>
-</div>
-  <router-outlet></router-outlet>
-
-

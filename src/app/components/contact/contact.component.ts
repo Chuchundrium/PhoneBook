@@ -8,6 +8,7 @@ import {ErrorMatcher} from '../../classes/error-matcher';
 import {Contact} from '../../classes/contact';
 import {ApplicationService} from '../../services/application.service';
 import {switchMap} from 'rxjs/operators';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-contact',
@@ -35,12 +36,13 @@ export class ContactComponent implements OnInit, OnDestroy {
   matcher: ErrorMatcher = new ErrorMatcher();
   mode: string;
   private id: number;
+  isLoading = false;
 
   constructor(private dataService: DataService,
               private applicationService: ApplicationService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {
-    // this.id = activatedRoute.snapshot.params['id'];
+              private activatedRoute: ActivatedRoute,
+              private matSnackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -84,7 +86,11 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   contactSubmit() {
-    if (this.contactFG.invalid) { return; }
+    this.isLoading = true;
+    if (this.contactFG.invalid) {
+      this.isLoading = false;
+      return;
+    }
     const contactToSend = this.contactFG.value;
     contactToSend.id = this.mode === 'add' ? 0 : this.contact.id;
     this.correctObservable = this.mode === 'add' ?
@@ -92,11 +98,15 @@ export class ContactComponent implements OnInit, OnDestroy {
       this.applicationService.correctContact(contactToSend);
     this.correctSubscription = this.correctObservable.subscribe((res) => {
       console.log(res);
+      this.matSnackBar.open('Success!', null, this.snackBarOption);
       this.applicationService.getAll();
       this.dataSubscription = this.dataService.dataSubject.subscribe(() => {
           this.router.navigate(['phone-book']);
         },
-        (err) => console.log(err));
+        (err) => {
+          this.matSnackBar.open('Oops, something went wrong... Please, try again', null, this.snackBarOption);
+          console.log(err);
+        });
     });
   }
 

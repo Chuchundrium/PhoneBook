@@ -1,4 +1,10 @@
-<div class="myContact" fxFlex="100" fxLayoutAlign="center">
+<div *ngIf="isLoading" fxFlex="100" fxLayout="column"
+     fxLayoutAlign="space-evenly center" style="height: 80vh">
+  <ng-container>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-container>
+</div>
+<div *ngIf="!isLoading" class="myContact" fxFlex="100" fxLayoutAlign="center">
   <mat-card fxFlex.lt-sm="100" fxFlex.sm="60" fxFlex.gt-sm="50" fxFlex.gt-md="40" fxLayout="column" >
     <mat-card-header fxLayoutAlign="end">
       <button type="button" class="close" (click)="cancel()" aria-label="Close" matTooltip="Close">
@@ -42,7 +48,7 @@
                    [formControl]="phoneFC"
                    [errorStateMatcher]="matcher"
             >
-            <mat-hint>enter eny numbers for test</mat-hint>
+            <mat-hint>[XX]X-[XX]X-XXX-XXXX</mat-hint>
             <mat-error *ngIf="phoneFC.invalid">doesnt match to [XX]X-[XX]X-XXX-XXXX</mat-error>
           </mat-form-field>
         </div>
@@ -82,13 +88,10 @@
           </mat-form-field>
         </div>
         <div fxLayoutAlign="end" style="margin: 48px 0 0 0">
-          <button type="submit" mat-raised-button color="primary"><mat-icon>check</mat-icon><span class="buttonText">Submit</span></button>
-          <button type="reset" mat-raised-button color="primary"><mat-icon>refresh</mat-icon><span class="buttonText">Clear</span></button>
+          <button type="submit" mat-raised-button color="primary"><mat-icon>check</mat-icon><span class="buttonText" fxHide.xs>Submit</span></button>
+          <button type="reset" mat-raised-button color="primary"><mat-icon>refresh</mat-icon><span class="buttonText" fxHide.xs>Clear</span></button>
         </div>
       </form>
     </mat-card-content>
-<!--    <mat-card-content fxLayoutAlign="center center" fxHide.gt-xs>-->
-<!--      <p>Please, use wider screen</p>-->
-<!--    </mat-card-content>-->
   </mat-card>
 </div>
